@@ -2,8 +2,7 @@
 #include <conio.h> 
 #include <stdio.h> 
 #include <stdlib.h> 
-
-// All the elements to be used 
+ 
 // Declared here 
 #define WIDTH 40 
 #define HEIGHT 20 
@@ -14,7 +13,7 @@
 #define DEMON 'X' 
 
 // Global Variables are 
-// Declared here 
+
 int res = 0; 
 int score = 0; 
 int pacman_x, pacman_y; 
