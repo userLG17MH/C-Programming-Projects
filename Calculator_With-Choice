@@ -1,0 +1,231 @@
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+#include<stdlib.h>
+
+void add(int, int, FILE*);
+void sub(int, int, FILE*);
+void multi(int, int, FILE*);
+void di(float, float, FILE*);
+void cir(float, FILE*);
+void cyl(float, float, FILE*);
+void rec(int, int, FILE*);
+void sqr(int, int, FILE*);
+void tri(float, float, FILE*);
+
+int main() 
+{
+    int x,y;
+    int ch;
+    FILE *fptr;
+    fptr = fopen("calculator_results.txt","a");
+    if (fptr == NULL) 
+	{
+        printf("Error! Could not open file.");
+        return 1;
+    }
+    printf("\n **MENU** ");
+    printf("\n 1 Addition :+: ");
+    printf("\n 2 Substraction :-: ");
+    printf("\n 3 Multiplication :*: ");
+    printf("\n 4 Division :/: ");
+    printf("\n 5 Area Of Circle :O: ");
+    printf("\n 6 Area Of Cylinder :(I): ");
+    printf("\n 7 Area Of Rectangle :[=]: ");
+    printf("\n 8 Area Of Square :[]: ");
+    printf("\n 9 Area Of A Triangle :: ");
+    printf("\n 10 Make A Tree :: ");
+    printf("\n Choose Any Operator: ");
+    scanf("%d", &ch);
+
+    if (ch == 5)
+    {
+          printf("\n Enter The Radius: ");
+          scanf("%d", &x);
+	} 
+	else if (ch == 6) 
+	{
+        printf("\n Enter The Radius: ");
+        scanf("%d", &x);
+        printf("\n Enter The Height: ");
+        scanf("%d", &y);
+    }     
+    else if (ch == 7) 
+	{
+        printf("\n Enter The Length: ");
+        scanf("%d", &x);
+        printf("\n Enter The Breadth: ");
+        scanf("%d", &y);
+    }
+    else if (ch == 8) 
+	{
+        printf("\n Enter The Length: ");
+        scanf("%d", &x);
+        printf("\n Enter The Breadth: ");
+        scanf("%d", &y);
+    }
+    else if (ch == 9) 
+	{
+        printf("\n Enter The Base: ");
+        scanf("%d", &x);
+        printf("\n Enter The Height: ");
+        scanf("%d", &y);
+    } 
+    else if (ch == 10) 
+	{
+        printf("    *\n");
+        printf("   ***\n");
+        printf("  *****\n");
+        printf(" *******\n");
+        printf("   |||\n");
+        fprintf(fptr, "    *\n  ***\n *****\n*******\n  |||\n");
+    } 
+	else
+	{
+        printf("\n Enter The 1st Number: ");
+        scanf("%d", &x);
+        printf("\n Enter The 2nd Number: ");
+        scanf("%d", &y);
+    }
+
+    switch(ch) 
+	{
+        case 1:
+       	{
+            add(x, y, fptr);
+            break;
+        }
+        case 2:
+        {
+		    sub(x, y, fptr);
+            break;
+        }
+        case 3:
+       	{
+            multi(x, y, fptr);
+            break;
+        }
+        case 4:
+        {
+            di(x, y, fptr);
+            break;
+        }
+        case 5:
+        {
+		    cir(x,fptr);
+		    break;
+		}
+		case 6:
+        {
+		    cyl(x, y, fptr);
+		    break;
+		}	
+		case 7:
+        {
+		    rec(x, y, fptr);
+		    break;
+		}
+		case 8:
+        {
+		    sqr(x, y, fptr);
+		    break;
+		}
+		case 9:
+        {
+		    tri(x, y, fptr);
+		    break;
+		}
+		case 10:
+        {
+		    break;
+		}
+        default:
+            printf("!!WRONG CHOICE!!");
+    }
+
+    fclose(fptr);
+    printf("\n History Of This Calculator Shown At :calculator_results.txt:");
+    return 0;
+    //printf("@ByChitrarup")
+}
+
+void add(int x, int y, FILE *fptr) 
+   {
+    int a;
+    a = x + y;
+    printf("Result Of %d+%d = %d", x, y, a);
+    fprintf(fptr, "Addition: %d + %d = %d\n", x, y, a);
+   }
+
+void sub(int x, int y, FILE *fptr) 
+   {
+    int s;
+    s = x - y;
+    printf("Result Of %d-%d = %d", x, y, s);
+    fprintf(fptr, "Subtraction: %d - %d = %d\n", x, y, s); 
+   }
+
+void multi(int x, int y, FILE *fptr) 
+   {
+    int m;
+    m = x * y;
+    printf("Result Of %d*%d = %d", x, y, m);
+    fprintf(fptr, "Multiplication: %d * %d = %d\n", x, y, m);
+   }
+
+void di(float x, float y, FILE *fptr) 
+{
+    if (y == 0) 
+    {
+        printf("Error! Division by zero is not allowed.");
+        fprintf(fptr, "Division by zero error!\n");
+    }
+	 else 
+	   {
+        float d;
+        d = x / y;
+        printf("Result Of %.2f/%.2f = %f", x, y, d);
+        fprintf(fptr, "Division: %.2f / %.2f = %f\n", x, y, d);
+       }
+}
+
+void cir(float x, FILE *fptr)
+{
+	float c;
+	c = (3.142857142857143)*x*x;
+	printf("Area Of A Circle Of Radius %.2f = %f", x, c);
+    fprintf(fptr, "Area Of A Circle Of Radius %.2f = %f\n", x, c);
+}
+
+void cyl(float x, float y, FILE *fptr)
+{
+	float cy;
+	cy = (3.142857142857143)*x*x*y;
+    printf("Volume Of Cylinder With Radius %.2f And Height %.2f = %f", x, y, cy);
+    fprintf(fptr, "Volume Of Cylinder With Radius %.2f And Height %.2f = %f\n", x, y, cy);
+}
+
+void rec(int x, int y, FILE *fptr) 
+   {
+    int r;
+    r = x * y;
+    printf("Area Of Rectangle Of Length %d And Breadth %d = %d", x, y, r);
+    fprintf(fptr, "Area Of Rectangle Of Length: %d And Breadth: %d = %d\n", x, y, r);
+   }
+
+void sqr(int x, int y, FILE *fptr) 
+   {
+    int q;
+    q = x * y;
+    printf("Area Of Square Of Length %d And Breadth %d = %d", x, y, q);
+    fprintf(fptr, "Area Of Square Of Length: %d And Breadth: %d = %d\n", x, y, q);
+   }
+
+void tri(float x, float y, FILE *fptr) 
+   {
+    float t;
+    t = (x * y ) / 2;
+    printf("Area Of Triangle Of Base %.2f And Height %.2f = %.3f", x, y, t);
+    fprintf(fptr, "Area Of Triangle Of Base %.2f And Height %.2f = %f.3\n", x, y, t);
+   }
+   
